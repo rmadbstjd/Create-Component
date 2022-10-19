@@ -1,4 +1,5 @@
 import "./App.css";
+import Avatar from './components/Avatar';
 import Profile from './components/Profile';
 
 function AppProfile() {
@@ -9,13 +10,17 @@ function AppProfile() {
                       {img : "https://images.unsplash.com/photo-1657000521605-559d5e227280?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
                       name : "Bob kyu", job :"Designer", state : "old"}];
   return(
-    <> 
-      {
+    <> <Avatar img={profileArr[0].img} state="new"/>
+      {   
           profileArr.map((item) => {
             return <Profile img = {item.img}
             name= {item.name} title={item.job} state={item.state}/>
           })
+          
+
       }
+      
+      
     </>
   );
     

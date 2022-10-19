@@ -9,6 +9,7 @@ function AppJSX() {
           return <li>{item}</li>;
         })}
       </ul>
+    
     </div>
   );
 }
