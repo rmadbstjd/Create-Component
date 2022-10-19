@@ -1,6 +1,6 @@
 export default function Avatar({img,state}) {
 
-    return <div class="avatar">
+    return <div className="avatar">
         <img
         className="photo"
         src={img}
