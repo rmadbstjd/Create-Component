@@ -58,3 +58,19 @@
   background-color: rgb(215,127,12);
   background : linear-gradient(90deg, rgba(215,127,12,1) 0%, rgba(253,220,29,1) 100%);
 }
+.banner {
+  text-align:center;
+  line-height: 255%;
+  background-color: yellow;
+  color: black;
+  margin : auto;
+  width: 200px;
+  height:40px;
+  border: solid yellow 1px;
+}
+
+.total {
+  font-size: 2rem;
+  
+
+}
