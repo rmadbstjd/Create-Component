@@ -43,4 +43,4 @@ export default function Products() {
         </ul>
         <button onClick={() =>setCount((prev)=> prev + 1)}>{count}</button>
     </div>
-}        
+}         
