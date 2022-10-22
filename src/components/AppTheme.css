@@ -1,0 +1,28 @@
+body {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .header {
+    border: solid black 1px;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    color: white;
+  }
+  
+  .main {
+    border: solid black 1px;
+    height: 100%;
+    flex: 1 1 0%;
+  }
+  
+  .footer {
+    border: solid black 1px;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    color: white;
+  }
