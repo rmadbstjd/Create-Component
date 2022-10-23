@@ -22,6 +22,7 @@ export default function personReducer(person, action) {
     }
     case "deleted": {
       const { deleteName } = action;
+      console.log("이름", deleteName);
       return {
         ...person,
         mentors: person.mentors.filter((mentor) => {
