@@ -4,7 +4,7 @@ import useProducts from '../../hooks/useProducts'
 
 export default function Products() {
     const [checked, setChecked]= useState(false);
-    const [loading, error, products] = useProducts({salesOnly : checked});
+    const [loading, error, products] = useProducts(checked);
     
     
     const handleChange = () => {

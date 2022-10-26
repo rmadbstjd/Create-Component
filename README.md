@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+<h1>1. 라이브러리와 프레임워크의 차이점</h1>
+<p>프레임워크란 우리가 무언가를 만드는데 필요한 모든 것을 제공해준다.</p>
+<p>웹 프레임워크는 UI뿐만이 아닌 Routing, 네트워크 통신을 위한 HTTP Clients, 많은 데이터를 관리할 수 있도록 도와주는 State management를 포함한다.</p>
+<p>대표적인 웹 프레임워크로는 Angular, Android, IOS등이 있다.</p>
+<p>프레임워크를 사용하면 편하다는 장점이 있지만 제공하는 모든 기능들을 숙지해야하며, 자율성이 떨어질 수 있다는 단점이 있다.</p>
+</br>
+<p>라이브러리란 큰 골격이나 규칙이 정해져있지 않고 조금 더 좁은 문제를 해결하기 위한 작은 Solution 단위이다.</p>
+<p>리액트가 라이브러리의 한 예시이며, 다양한 문제들 속에서 UI를 만드는 것을 도와주는 라이브러리이다.</p>
+<p>리액트로 만들면서 네트워크 통신이 필요하다면 Fecth 혹은 axios를 사용할 수 있고, 라우팅이 필요하다면 라우팅을 위한 라이브러리를 사용하는 자율성이 보장되는 장점이 있다.</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1>리액트의 동작 원리</h1>
+<p>데이터를 나타내는 State(내부 상태)와 Props(외부로부터 전달 받은 상태), 이 두 가지 데이터를 나타내는 render가 있다.</p>
+<p>State 혹은 Props가 변경될 때 마다 재랜더링을 하여 바뀐 상태를 업데이트하고, 실제 화면에는 변경된 부분만 업데이트가 된다.</p>
 
-## Available Scripts
+<h1>리액트 훅(React Hooks)</h1>
+<p>함수형 컴포넌트가 등장하기 전에는 클래스형 컴포넌트를 만들었다.</p>
+<p>클래스 컴포넌트는 절차형 프로그래밍에 익숙한 프론트엔드 개발자들에게 어려움을 주었고, 자바스크립트에서 발생하는 this 바인딩 이슈와 render, LifeCycle에 있는 로직들을 재사용하기 어려웠고 재활용 하려면 상속이나 Composition을 사용해야 하는 어려움도 주어서 함수형 컴포넌트가 등장했다.</p>
+<p>함수형 컴포넌트는 함수로 컴포넌트를 만들 수 있고 클래스나 상속을 몰라도 함수로 정의하고, JSX를 리턴하는 것만 잘 만들면 컴포넌트를 쉽게 만들 수 있다.</p>
+<p>또한 React Hooks을 이용해서 로직들을 재사용할 수 있다. React Hooks는 리액트의 State와 LifeCycle과 관련된 기능을 갈고리처럼 연결할 수 있는 함수들이다.</p>
+<p>즉, React Hooks는 재사용이 가능한 함수라고 볼 수 있다. ex)useState, useRef, useMemo, useCallback 등등</p>
+<p>가장 중요한 핵심은 React Hooks은 값의 재사용이 아닌 로직의 재사용이라는 것이다.</p>
 
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<h1>JSX를 사용할 때 세 가지 유의점</h1>
+<p>1. 리액트에서 JSX를 리턴할 때 꼭 하나의 태그만 리턴해야 한다.</p>
+<p>2. HTML에서는 class라고 작성하지만 JSX에서는 className이라고 작성해야 한다.</p>
+<p>3. HTML 형식과 매우 유사하지만 js 파일에 있으므로 자바스크립트 코드를 작성할 수 있다.</p>
+<p>ex) function App() {const Name= "윤성"; return <.h1>{name}</.h1> </p>
+<p>JSX를 작성할 때 <.li> 태그들이 많다면 자바스크립트 함수를 이용해서 간편하게 작성할 수 있다.</p>

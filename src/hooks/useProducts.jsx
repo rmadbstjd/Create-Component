@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
 import { useEffect } from 'react';
-export default function useProducts ({salesOnly}) {
+export default function useProducts (checked) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(undefined);
     const [products, setProducts] = useState([]);
     let url;
-    if(salesOnly === false) {
+    if(checked === false) {
         url = 'data/products.json';
     }
-    if(salesOnly === true) {
+    if(checked === true) {
         url = 'data/saleProducts.json'
     }
     useEffect(() => 
@@ -28,6 +28,6 @@ export default function useProducts ({salesOnly}) {
         console.log("깨끗하게 청소하는 일들을 함");
     }
         
-    },[salesOnly,url]);
+    },[checked,url]);
     return [loading, error,products];
 }
