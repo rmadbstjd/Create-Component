@@ -134,9 +134,48 @@ setNumber((prev) ⇒ prev + 1); // 이전 상태 값을 인자로 받아 1을 �
 
 ![image](https://user-images.githubusercontent.com/58474431/198288226-a7f9dd56-537e-4e77-aa31-9dae657bc031.png)
 
+<p>만약 트리의 최하단에 있는 컴포넌트가 상태 값이 필요하다면 props를 계속 아래로 전달하는 prop drilling이 발생된다.
+또한 모든 컴포넌트에서 필요로하는 상태 값이 있다면 모든 컴포넌트에 props를 전달하는 방법은 매우 비효율적일 것이다.
+이러한 문제를 해결하기위해 나온 것이 Context API이다.
+모든 컴포넌트들이 공통적으로 필요한 상태 값을 관리할 수 있는 것이 바로 Context API이다.
+예를 들어, 언어(한국어,영어), 테마(다크모드, 라이트모드), 메인 컬러, 로그인 여부 등을 공유할 수 있다.
+주의해야할 점은 Context API를 사용하는 곳에서 상태 값이 변경이 되면 Context API를 사용하는 모든 컴포넌트의 상태 값이 변경된거기 때문에
+모두 re-Rendering이 된다. 따라서 빈번히 업데이트가 될 수 있는 상태 값은 Context API로 관리하지 않는 것이 좋고,
+일명 Umbrella Techinique을 사용하는 것이 좋다.
+Context API를 모든 트리에서 사용할 수 있지만 우리가 지정하는 컴포넌트 트리에만 사용할 수 있다.
+따라서 상태 값이 어느 컴포넌트부터  어느 컴포넌트까지 공유되어야하는지를 판단하여 우산을 씌어줘야 한다.</p>
 
+![image](https://user-images.githubusercontent.com/58474431/198294185-23c5e338-dbac-4992-90d3-c59ee8e916a5.png)
 
+<p>Context API를 사용하여 토글 버튼을 누르면 다크모드가 활성화하게 만들어보기</p>
 
+![image](https://user-images.githubusercontent.com/58474431/198297088-4e5e227e-e36e-46c3-a8c6-0ca607f83ecc.png)
 
+![image](https://user-images.githubusercontent.com/58474431/198297178-429858cf-fdc9-470a-b2d8-b9fb743aa426.png)
 
+![image](https://user-images.githubusercontent.com/58474431/198297508-c1d86d49-354f-46a9-94b7-9ba8dc57d8c4.png)
+
+![image](https://user-images.githubusercontent.com/58474431/198297693-fad97c42-d59e-4956-b27f-9d72b6940b4b.png)
+
+![image](https://user-images.githubusercontent.com/58474431/198297746-3c86fd1b-c398-449f-b365-38475c8b9ba4.png)
+
+<p>부모 컴포넌트가 렌더링이되면 모든 하위 컴포넌트들이 재렌더링이 된다!</p>
+<p>내가 알기로는 렌더링이되는 경우는 해당 컴포넌트의 props, state 값이 변경되어야지만 재렌더링이 된다고 알고 있었는데 왜 부모의 상태 값이 변경되면 자식 컴포넌트까지 렌더링이 될까?</p>
+<p>그 이유는 아래의 코드를 보면서 설명할 수 있다.</p>
+
+![image](https://user-images.githubusercontent.com/58474431/198306092-66b70be8-415b-45f3-b6ae-07b967822a10.png)
+
+<p>state가 어떠한 이유로 변경되면 AppMentor 컴포넌트가 재 렌더링이 되고, 그 자식 컴포넌트인 Button 컴포넌트의 text, onClick에 새로운 값이 할당되면서(즉, props가 변경됨)
+Button 컴포넌트도 재렌더링이 되는 것이다. 물론! text나 onClick의 값이 바뀐 것은 아니나, 부모 컴포넌트가 렌더링이 될 때마다 새로운 값을 생성해서 text나 onClick에 할당하는 것이기 때문에
+text나 onClick의 값이 바뀌지 않아도 할당이 되므로 렌더링이 된다!
+물론 가상 DOM이라는 걸 이용해 렌더링이 되지만 실제 DOM은 변경되지는 않는다. 물론 네트워크 요청이나, 무거운 일(어려운 계산 및 for loop를 돌거나)하는 일이 아니라면
+성능에 크게 영향이 가지 않는다. 만약 부모 컴포넌트가 수많은 자식 컴포넌트를 가지고 있거나 무거운 일을 한다면 성능 개선을 위해 useCallback, useMemo등을 사용해서 매번 자식 컴포넌트들이 호출되지 않도록 만들 수는 있지만 
+처음 컴포넌트를 만들 때 부터 막무가내로 useCallback, useMemo등을 사용할 필요는 없다. 그 이유는 가상 DOM과 리액트 팀에서 내부적으로 자식 컴포넌트의 props이나 state가 변경되지 않았다면 다시 호출하지 말자고 열심히 개발하고 있기 때문이다.
+만약 무거운 일을 렌더링이 될 때 마다 하는 것이 아닌 처음에만 하면 되는 것이라면 useEffect()를 사용하면 되고,  또는 리액트에서 제공하는 useMemo()를 사용할 수 있다.
+useMemo( () ⇒ calculateSomething(). [] );  // 함수 뒤에 빈 배열을 넣으면 처음 렌더링이 될 때 딱 한 번만 실행되고, 특정 상태 값이 변경될 때, 예를 들어 text가 변경될 때 마다 행시키고 싶으면 []에 text를 넣으면 된다.
+useMemo( () ⇒ calculateSomething(), [text]);</p>
+
+<p>useMemo()를 사용한 예시</p>
+
+![image](https://user-images.githubusercontent.com/58474431/198307918-f23d07fd-631d-4542-8b00-480d12afeec1.png)
 
